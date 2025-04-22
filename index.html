@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trình phát nhạc</title>
+    <title>nhạc của hoàng</title>
     <style>
         body {
             background: url('background.jpg') no-repeat center center fixed;
@@ -74,8 +74,21 @@
             { name: "Bình Yên", url: "binhyen.mp3" },
             { name: "Mất Kết Nối", url: "matketnoi.mp3" },
             { name: "Thay Tôi Yêu Cô Ấy", url: "thaytoiyeucoay.mp3" },
-            { name: "Trả Cho Em", url: "trachoem.mp3" }
+            { name: "Trả Cho Em", url: "trachoem.mp3" },
+            { name: "yêu 5", url: "Yeu5-Rhymastic-4756973.mp3" },
+            { name: "chuyện chúng ta sau này", url: "ChuyenChungTaSauNay1-HaiDangDooERIK-8865963 (1).mp3" },
+            { name: "đi về nhà", url: "Di Ve Nha - Den, JustaTee - NhacHayVN.mp3" },
+            { name: "em không khóc", url: "EmKhongKhoc-buitruonglinhVuPhungTien-7168105 (1).mp3" },
+            { name: "exit sign", url: "ExitSign-HIEUTHUHAI-11966367 (1).mp3" },
+            { name: "giờ thì", url: "GioThi-buitruonglinh-16952778.mp3" },
+            { name: "mặt mộc", url: "MatMoc-PhamNguyenNgocVAnhAnNhi-7793420 (1).mp3" },
+            { name: "thay tôi yêu cô ấy", url: "thaytoiyeucoay.mp3" },
+            { name: "tình ca tình ta", url: "TinhCaTinhTa-KIS-7040221.mp3" },
+            { name: "từng ngày yêu em", url: "TungNgayYeuEm-buitruonglinh-16952664.mp3" },
+            { name: "yêu người có ước mơ", url: "YeuNguoiCoUocMo-buitruonglinh-8396692.mp3" },
         ];
+
+        let currentTrackIndex = -1;
 
         tracks.forEach((track, index) => {
             const li = document.createElement('li');
@@ -90,11 +103,18 @@
         });
 
         function playTrack(index) {
+            currentTrackIndex = index;
             audioPlayer.src = tracks[index].url;
             audioPlayer.play();
             document.querySelectorAll('#playlist li').forEach(li => li.classList.remove('playing'));
             playlist.children[index].classList.add('playing');
         }
+
+        audioPlayer.addEventListener('ended', () => {
+            if (currentTrackIndex + 1 < tracks.length) {
+                playTrack(currentTrackIndex + 1);
+            }
+        });
     </script>
 </body>
 </html>
